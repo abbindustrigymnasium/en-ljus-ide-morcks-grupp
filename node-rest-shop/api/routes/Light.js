@@ -67,19 +67,19 @@ else
 
 router.post("", (req, res)=> {
     const Lamp = {
-        Name: req.body.Name, //tar värdet du har angett till namn i json och gör om den till en variabel.
-        Hard: req.body.Hard, 
-        Strenght: req.body.Strength
+        id: req.body.id, //tar värdet du har angett till namn i json och gör om den till en variabel.
+        temp: req.body.temp, 
+        ljus: req.body.ljus
     };
 
     var createdLamp = function(){ 
        return new Promise(function(resolve,reject){
 
-            var theLamp = [Lamp.Name,Lamp.Hard,Lamp.Strenght];
+            var theLamp = [Lamp.id,Lamp.temp,Lamp.ljus];
 
             console.log(theLamp);
 
-            con.query('INSERT INTO switch (Name,Hard,Strenght) VALUES ?', [[theLamp]], function (error, results, fields) {
+            con.query('INSERT INTO light (id,temp,ljus) VALUES ?', [[theLamp]], function (error, results, fields) {
                 if (error)
                 return reject (error);
                 else
