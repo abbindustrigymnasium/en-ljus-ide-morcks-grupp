@@ -9,40 +9,70 @@ import {
 	Slider,
 } from 'react-native';
 
-constructor(props)
-{
-	super(props);
-
-}
-
 export default class Component2 extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-		  value: 50,
+			Ljus: 50,
+			
 		};
-	  }
-	
+		}
+		
+		componentDidMount(){
+			let self = this;
+			fetch("http://iot.abbindustrigymnasium.se/api/routes/grupp7",{
+				
+			method: "GET"
+			
+		}).then((response) => response.json()).then((responseJSON) =>
+		{
+			console.log(responseJSON);
+
+			var resultat = responseJSON.result
+			if (message = "Light7"){
+				if(response.lenght != 0 ){
+					self.setState({
+						Ljus: resultat
+					})
+				}
+				else
+				alert("Not found")
+				console.log(this.state)
+			}
+		}
+	)
+			
+
+		}
+
+	/*	getFromBack() {
+			return this.state.Ljus.map(Ljus) => {
+				return (
+					<
+				)
+			}
+		}
+*/
 	  change(value) {
 		this.setState(() => {
 		  return {
-			value: parseFloat(value),
+			Ljus: parseFloat(Ljus),
 		  };
 		});
 	  }
 	
 	  render() {
-		const {value} = this.state;
+		const {Ljus} = this.state;
 		return (
 		  <View style={styles.container}>
-			<Text style={styles.text}>{String(value)}</Text>
+			<Text style={styles.text}>{this.state.Ljus}</Text>
 			<View> 
 			<Slider style={styles.containernew}
 			  step={1}
 			  maximumValue={100}
 			  onValueChange={this.change.bind(this)}
-			  value={value}
+			  value={Ljus}
 			/>
 
 			</View>
