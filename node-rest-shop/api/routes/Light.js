@@ -44,7 +44,7 @@ getLight().then(response =>{ //kör funktionen
 }, null, true, "America/Los-angeles"); //anger tidszonen som cron ska gå efter
 
 
-/*router.get("/:Name", (req, res)=> {
+router.get("/:Name", (req, res)=> {
     var found=false;
     var outputValue;
     Values_fromDB.forEach(element => {
@@ -63,7 +63,7 @@ else
     res.status(200).json(outputValue);
     console.log(outputvalue);
 }
-}); */
+}); 
 
 router.post("", (req, res)=> {
     const Lamp = {
@@ -104,12 +104,12 @@ router.post("", (req, res)=> {
     
 });
 
-router.patch('/:Name', (req, res, next) => {
+router.patch('/:id', (req, res, next) => {
 
     const product = {
-        Name: req.params.Name,
-        Hard: req.body.Hard,
-        Strength: req.body.Strength
+        id: req.params.id,
+        temp: req.body.temp,
+        ljus: req.body.ljus
     };
 
     var adjustLight = function(){
@@ -117,7 +117,7 @@ router.patch('/:Name', (req, res, next) => {
  
              console.log(product.Name);
  
-             con.query('UPDATE `switch` SET `Hard` = ?, `Strenght` = ? WHERE `Name` = ?', [product.Hard, product.Strength, product.Name], function (error, results) {
+             con.query('UPDATE `light` SET `temp` = ?, `ljus` = ? WHERE `id` = ?', [product.temp, product.ljus, product.id], function (error, results) {
                  console.log(error);
                  if (error)
                  return reject (error);
