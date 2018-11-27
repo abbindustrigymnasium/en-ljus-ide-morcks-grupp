@@ -1,5 +1,4 @@
 import React from 'react';
-import LinearGradient from 'react-native-linear-gradient';
 
 
 import { 
@@ -15,13 +14,13 @@ export default class Component2 extends React.Component {
 		super(props);
 		this.state = {
 			Ljus: 50,
-			
+			lampname: 404,
 		};
 		}
 		
-		componentDidMount(){
+		ComponentDidMount(){
 			let self = this;
-			fetch("http://iot.abbindustrigymnasium.se/api/routes/grupp7",{
+			fetch("http://iot.abbindustrigymnasium.se/api/routes/Light7/" + this.state.lampname,{
 				
 			method: "GET"
 			
@@ -29,7 +28,8 @@ export default class Component2 extends React.Component {
 		{
 			console.log(responseJSON);
 
-			var resultat = responseJSON.result
+			var resultat = responseJSON.result;
+			console.log(resultat);
 			if (message = "Light7"){
 				if(response.lenght != 0 ){
 					self.setState({
@@ -42,19 +42,9 @@ export default class Component2 extends React.Component {
 			}
 		}
 	)
-			
 
 		}
-
-	/*	getFromBack() {
-			return this.state.Ljus.map(Ljus) => {
-				return (
-					<
-				)
-			}
-		}
-*/
-	  change(value) {
+	  change(Ljus) {
 		this.setState(() => {
 		  return {
 			Ljus: parseFloat(Ljus),
