@@ -1,4 +1,7 @@
 import React from 'react';
+import LinearGradient from 'react-native-linear-gradient';
+
+
 import { 
 	StyleSheet,
 	View,
@@ -6,7 +9,11 @@ import {
 	Slider,
 } from 'react-native';
 
+constructor(props)
+{
+	super(props);
 
+}
 
 export default class Component2 extends React.Component {
 
@@ -30,12 +37,15 @@ export default class Component2 extends React.Component {
 		return (
 		  <View style={styles.container}>
 			<Text style={styles.text}>{String(value)}</Text>
-			<Slider
+			<View> 
+			<Slider style={styles.containernew}
 			  step={1}
 			  maximumValue={100}
 			  onValueChange={this.change.bind(this)}
 			  value={value}
 			/>
+
+			</View>
 		  </View>
 		);
 	  }
@@ -47,7 +57,14 @@ export default class Component2 extends React.Component {
 		flex: 1,
 		flexDirection: 'column',
 		justifyContent: 'center',
-	  },
+		},
+		containernew: {
+			padding: 25,
+			paddingTop: 5,
+			flex: 1,
+			height: 25,
+			justifyContent: 'center',
+			},
 	  text: {
 		fontSize: 50,
 		textAlign: 'center',

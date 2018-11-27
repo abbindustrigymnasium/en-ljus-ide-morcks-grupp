@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
 	    justifyContent: 'center',
 	    overflow: 'hidden',
 		padding: 10,
-		top: 50,
+		top: 30,
 	},
 	
 	item1Text: {
