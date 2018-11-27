@@ -14,13 +14,12 @@ export default class Component2 extends React.Component {
 		super(props);
 		this.state = {
 			Ljus: 50,
-			lampname: 404,
 		};
 		}
 		
-		ComponentDidMount(){
+		componentDidMount(){
 			let self = this;
-			fetch("http://iot.abbindustrigymnasium.se/api/routes/Light7/" + this.state.lampname,{
+			fetch("http://iot.abbindustrigymnasium.se:3001/grupp7/404",{
 				
 			method: "GET"
 			
@@ -28,12 +27,12 @@ export default class Component2 extends React.Component {
 		{
 			console.log(responseJSON);
 
-			var resultat = responseJSON.result;
+			var resultat = responseJSON;
 			console.log(resultat);
 			if (message = "Light7"){
-				if(response.lenght != 0 ){
+				if(responseJSON.length != 0 ){
 					self.setState({
-						Ljus: resultat
+						Ljus: resultat.ljus
 					})
 				}
 				else
