@@ -60,7 +60,10 @@ router.get("/:Name", (req, res)=> {
     }
 else 
 {
-    res.status(200).json(outputValue);
+    res.status(200).json({
+        message: "Light7",
+        result: outputValue
+    });
     console.log(outputvalue);
 }
 }); 
