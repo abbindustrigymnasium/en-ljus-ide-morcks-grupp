@@ -192,4 +192,7 @@ item5Text: {
 	textAlign: 'left',
 	width: '100%',
 },
+item6Text: {
+	textAlign: 'center',
+},
 	});
