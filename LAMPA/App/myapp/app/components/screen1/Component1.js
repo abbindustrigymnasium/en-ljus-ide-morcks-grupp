@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     
 	component: {
 	    width: '100%',
-	    flexDirection: 'row',
+		flexDirection: 'row',
 	    paddingLeft: 7.5,
 	    paddingRight: 7.5,
 		paddingTop: 20,
@@ -72,16 +72,12 @@ const styles = StyleSheet.create({
 	
 	layout1: {
 	    width: '100%',
-	    height: 86,
+	    height: 89.5,
 	},
 	
 	itemcontainer1: {
 	    width: '100%',
-	    height: '100%',
-	    paddingTop: 7.5,
-	    paddingBottom: 7.5,
-	    paddingLeft: 7.5,
-	    paddingRight: 7.5,
+		height: '100%',
 	},
 	
 	itemcontainer1Inner: {
@@ -89,13 +85,14 @@ const styles = StyleSheet.create({
 	    height: '100%',
 	    position: 'relative',
 	    alignItems: 'center',
-	    justifyContent: 'center',
+		justifyContent: 'center',
+		paddingTop: 11,
+		paddingBottom : 5,
 	},
 	
 	item1: {
 	    width: '100%',
 	    height: '100%',
-	    overflow: 'hidden',
 	},
 	
 });

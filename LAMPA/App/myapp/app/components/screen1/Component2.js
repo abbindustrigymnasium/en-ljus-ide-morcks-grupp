@@ -91,6 +91,11 @@ export default class Component2 extends React.Component {
 		const {Temp} = this.state;
 		return (
 		  <View style={styles.container}>
+			<Text 
+			style={styles.item2Text}
+			>
+			Ljusstyrka
+			</Text>
 			<Text style={styles.text}>{this.state.Ljus}</Text>
 			<View> 
 			<Slider style={styles.containernew}
@@ -100,6 +105,11 @@ export default class Component2 extends React.Component {
 				onSlidingComplete={ this.insertToServer}
 			  value={Ljus}
 			/>
+			<Text 
+			style={styles.item3Text}
+			>
+			Tempetarur
+			</Text>
 			<Text style={styles.text2}>{this.state.Temp}</Text>
 			<View> 
 			<Slider style={styles.containernew2}
@@ -122,6 +132,7 @@ export default class Component2 extends React.Component {
 		flex: 1,
 		flexDirection: 'column',
 		justifyContent: 'center',
+		marginTop: -50,
 		},
 		containernew: {
 			paddingRight: 25,
@@ -129,11 +140,11 @@ export default class Component2 extends React.Component {
 			paddingTop: 5,
 			paddingBottom: 10,
 			flex: 1,
-			height: 20,
+			height: 0,
 			justifyContent: 'center',
 			},
 	  text: {
-		fontSize: 50,
+		fontSize: 45,
 		textAlign: 'center',
 		},
 		containernew2: {
@@ -146,7 +157,20 @@ export default class Component2 extends React.Component {
 			justifyContent: 'center',
 			},
 	  text2: {
-		fontSize: 50,
+		fontSize: 45,
 		textAlign: 'center',
-	  },
+		},
+		item2Text: {
+	    color: '#181818',
+	    fontSize: 15,
+	    textAlign: 'center',
+	    width: '100%',
+	},
+	item3Text: {
+		color: '#181818',
+		fontSize: 15,
+		textAlign: 'center',
+		width: '100%',
+		paddingTop: 75,
+},
 	});

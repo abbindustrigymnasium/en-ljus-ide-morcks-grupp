@@ -109,26 +109,12 @@ export default class Screen1 extends React.Component {
                             showComponent={ (component) => this.showComponent(component) }
                             visible={ this.state.ImageVisible }
                         />
-                        <Component4 
-                            navigation={this.props.navigation}
-                            toggleComponent={ (component) => this.toggleComponent(component) }
-                            hideComponent={ (component) => this.hideComponent(component) }
-                            showComponent={ (component) => this.showComponent(component) }
-                            visible={ this.state.Component4Visible }
-                        />
                         <Component2 
                             navigation={this.props.navigation}
                             toggleComponent={ (component) => this.toggleComponent(component) }
                             hideComponent={ (component) => this.hideComponent(component) }
                             showComponent={ (component) => this.showComponent(component) }
                             visible={ this.state.Component2Visible }
-                        />
-                        <Component5 
-                            navigation={this.props.navigation}
-                            toggleComponent={ (component) => this.toggleComponent(component) }
-                            hideComponent={ (component) => this.hideComponent(component) }
-                            showComponent={ (component) => this.showComponent(component) }
-                            visible={ this.state.Component5Visible }
                         />
 
                     </View>
