@@ -105,10 +105,13 @@ export default class Component2 extends React.Component {
 				onSlidingComplete={ this.insertToServer}
 			  value={Ljus}
 			/>
+			<Text style={styles.item6Text}>
+			<Text style={styles.item5Text} >Min </Text><Text style={styles.item4Text}> Max </Text>
+			</Text>
 			<Text 
 			style={styles.item3Text}
 			>
-			Tempetarur
+			Färgtemperatur
 			</Text>
 			<Text style={styles.text2}>{this.state.Temp}</Text>
 			<View> 
@@ -119,6 +122,10 @@ export default class Component2 extends React.Component {
 				onSlidingComplete={ this.insertToServer}
 			  value={Temp}
 			/>
+
+			<Text style={styles.item6Text}>
+			<Text style={styles.item5Text} >Kallt </Text><Text style={styles.item4Text}> Varmt </Text>
+			</Text>
 			</View>
 			</View>
 		  </View>
@@ -132,15 +139,15 @@ export default class Component2 extends React.Component {
 		flex: 1,
 		flexDirection: 'column',
 		justifyContent: 'center',
-		marginTop: -50,
+		marginTop: -25,
 		},
 		containernew: {
-			paddingRight: 25,
-			paddingLeft: 25,
-			paddingTop: 5,
-			paddingBottom: 10,
+			paddingRight: 30,
+			paddingLeft: 30,
+			paddingTop: 15,
+			paddingBottom: 15,
 			flex: 1,
-			height: 0,
+			height: 25,
 			justifyContent: 'center',
 			},
 	  text: {
@@ -148,12 +155,12 @@ export default class Component2 extends React.Component {
 		textAlign: 'center',
 		},
 		containernew2: {
-			paddingRight: 25,
-			paddingLeft: 25,
-			paddingTop: 5,
-			paddingBottom: 10,
+			paddingRight: 30,
+			paddingLeft: 30,
+			paddingTop: 15,
+			paddingBottom: 15,
 			flex: 1,
-			height: 20,
+			height: 25,
 			justifyContent: 'center',
 			},
 	  text2: {
@@ -172,5 +179,17 @@ export default class Component2 extends React.Component {
 		textAlign: 'center',
 		width: '100%',
 		paddingTop: 75,
+},
+item4Text: {
+	color: '#181818',
+	fontSize: 15,
+	textAlign: 'right',
+	width: '100%',
+},
+item5Text: {
+	color: '#181818',
+	fontSize: 15,
+	textAlign: 'left',
+	width: '100%',
 },
 	});
