@@ -11,6 +11,7 @@ import Component6 from './Component6';
 import Component5 from './Component5';
 import Component3 from './Component3';
 import Component7 from './Component7';
+import Image from './Image';
 
 export default class Screen1 extends React.Component {
 
@@ -26,6 +27,8 @@ export default class Screen1 extends React.Component {
             Component5Visible: true,
             Component3Visible: true,
             Component7Visible: true,
+            ImageVisible: true,
+
         }
 
     }
@@ -98,6 +101,13 @@ export default class Screen1 extends React.Component {
                             hideComponent={ (component) => this.hideComponent(component) }
                             showComponent={ (component) => this.showComponent(component) }
                             visible={ this.state.Component1Visible }
+                            />
+                            <Image 
+                            navigation={this.props.navigation}
+                            toggleComponent={ (component) => this.toggleComponent(component) }
+                            hideComponent={ (component) => this.hideComponent(component) }
+                            showComponent={ (component) => this.showComponent(component) }
+                            visible={ this.state.ImageVisible }
                         />
                         <Component4 
                             navigation={this.props.navigation}
@@ -113,33 +123,12 @@ export default class Screen1 extends React.Component {
                             showComponent={ (component) => this.showComponent(component) }
                             visible={ this.state.Component2Visible }
                         />
-                        <Component6 
-                            navigation={this.props.navigation}
-                            toggleComponent={ (component) => this.toggleComponent(component) }
-                            hideComponent={ (component) => this.hideComponent(component) }
-                            showComponent={ (component) => this.showComponent(component) }
-                            visible={ this.state.Component6Visible }
-                        />
                         <Component5 
                             navigation={this.props.navigation}
                             toggleComponent={ (component) => this.toggleComponent(component) }
                             hideComponent={ (component) => this.hideComponent(component) }
                             showComponent={ (component) => this.showComponent(component) }
                             visible={ this.state.Component5Visible }
-                        />
-                        <Component3 
-                            navigation={this.props.navigation}
-                            toggleComponent={ (component) => this.toggleComponent(component) }
-                            hideComponent={ (component) => this.hideComponent(component) }
-                            showComponent={ (component) => this.showComponent(component) }
-                            visible={ this.state.Component3Visible }
-                        />
-                        <Component7 
-                            navigation={this.props.navigation}
-                            toggleComponent={ (component) => this.toggleComponent(component) }
-                            hideComponent={ (component) => this.hideComponent(component) }
-                            showComponent={ (component) => this.showComponent(component) }
-                            visible={ this.state.Component7Visible }
                         />
 
                     </View>

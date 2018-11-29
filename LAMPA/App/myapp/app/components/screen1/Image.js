@@ -2,11 +2,11 @@ import React from 'react';
 import { 
 	StyleSheet,
 	View,
-	Text,
+	ImageBackground,
 } from 'react-native';
 
 
-export default class Component5 extends React.Component {
+export default class Component1 extends React.Component {
 
 
     render() {
@@ -30,13 +30,12 @@ export default class Component5 extends React.Component {
 
                 			<View style={styles.itemcontainer1Inner}>
 
-                                <View style={styles.item1}>
-										<Text 
-											style={styles.item1Text}
-										>
-											Temperatur
-										</Text>
-									</View>
+                                <ImageBackground 
+										source={require('../../img/screen1/standard-light-bulb.png')} 
+										style={styles.item1}
+									>
+										
+									</ImageBackground>
 
                 			</View>
 
@@ -59,11 +58,11 @@ const styles = StyleSheet.create({
 	component: {
 	    width: '100%',
 	    flexDirection: 'row',
-	    marginTop: 5,
-	    paddingLeft: 7.5,
-	    paddingRight: 7.5,
-	    paddingTop: 7.5,
-	    paddingBottom: 0,
+	    paddingLeft: 0,
+	    paddingRight: 0,
+		paddingTop: 0,
+		paddingBottom: 0,
+		backgroundColor: "#000000",
 	},
 	
 	layouts: {
@@ -73,16 +72,16 @@ const styles = StyleSheet.create({
 	
 	layout1: {
 	    width: '100%',
-	    height: 20,
+	    height: 95,
 	},
 	
 	itemcontainer1: {
 	    width: '100%',
 	    height: '100%',
 	    paddingTop: 0,
-	    paddingBottom: 0,
-	    paddingLeft: 0,
-	    paddingRight: 0,
+	    paddingBottom: 10,
+	    paddingLeft: 160,
+	    paddingRight: 160,
 	},
 	
 	itemcontainer1Inner: {
@@ -96,18 +95,7 @@ const styles = StyleSheet.create({
 	item1: {
 	    width: '100%',
 	    height: '100%',
-	    alignItems: 'center',
-	    justifyContent: 'center',
 	    overflow: 'hidden',
-		padding: 10,
-		top: 10,
-	},
-	
-	item1Text: {
-	    color: '#181818',
-	    fontSize: 14,
-	    textAlign: 'center',
-	    width: '100%',
 	},
 	
 });

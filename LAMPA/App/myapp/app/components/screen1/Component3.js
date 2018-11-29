@@ -14,6 +14,7 @@ export default class Component3 extends React.Component {
 		super(props);
 		this.state = {
 			Temp: 50,
+			Ljus: 50
 		};
 		}
 		
@@ -32,6 +33,7 @@ export default class Component3 extends React.Component {
 			if (message = "Light7"){
 				if(responseJSON.length != 0 ){
 					self.setState({
+						Ljus: resultat.ljus,
 						Temp: resultat.temp
 					})
 				}
@@ -41,8 +43,33 @@ export default class Component3 extends React.Component {
 			}
 		}
 	)
+	
 
 		}
+
+		insertToServer =() =>{
+			const {Temp} = this.state;
+			const {Ljus} = this.state;
+
+				fetch("http://iot.abbindustrigymnasium.se:3001/grupp7/404",{
+					method: "PATCH",
+					headers: {
+						"Accept": "application/json",
+						"Content-Type": "application/json",
+					},
+					body:JSON.stringify({
+						temp: Temp,
+						ljus: Ljus
+					})
+				}).then((response) => response.json()).then(responseJSON2 => {
+					console.log(responseJSON2);
+					alert(response.message+ " "+ Temp);
+				}).catch((error) => {
+					console.log(error);
+				});
+
+		}
+
 	  change(Temp) {
 		this.setState(() => {
 		  return {
@@ -55,12 +82,13 @@ export default class Component3 extends React.Component {
 		const {Temp} = this.state;
 		return (
 		  <View style={styles.container}>
-			<Text style={styles.text}>{this.state.Temp}</Text>
+			<Text style={styles.text2}>{this.state.Temp}</Text>
 			<View> 
-			<Slider style={styles.containernew}
+			<Slider style={styles.containernew2}
 			  step={1}
 			  maximumValue={100}
-			  onValueChange={this.change.bind(this)}
+				onValueChange={this.change.bind(this)}
+				onSlidingComplete={ this.insertToServer}
 			  value={Temp}
 			/>
 
@@ -77,14 +105,16 @@ export default class Component3 extends React.Component {
 		flexDirection: 'column',
 		justifyContent: 'center',
 		},
-		containernew: {
-			padding: 25,
+		containernew2: {
+			paddingRight: 25,
+			paddingLeft: 25,
 			paddingTop: 5,
+			paddingBottom: 10,
 			flex: 1,
-			height: 25,
+			height: 20,
 			justifyContent: 'center',
 			},
-	  text: {
+	  text2: {
 		fontSize: 50,
 		textAlign: 'center',
 	  },

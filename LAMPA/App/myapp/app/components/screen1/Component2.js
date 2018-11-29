@@ -14,7 +14,8 @@ export default class Component2 extends React.Component {
 		super(props);
 		this.state = {
 			Ljus: 50,
-		};
+			Temp: 50
+		}
 		}
 		
 		componentDidMount(){
@@ -32,7 +33,8 @@ export default class Component2 extends React.Component {
 			if (message = "Light7"){
 				if(responseJSON.length != 0 ){
 					self.setState({
-						Ljus: resultat.ljus
+						Ljus: resultat.ljus,
+						Temp: resultat.temp
 					})
 				}
 				else
@@ -43,6 +45,30 @@ export default class Component2 extends React.Component {
 	)
 
 		}
+
+		insertToServer =() =>{
+			const {Ljus} = this.state;
+			const {Temp} = this.state;
+
+				fetch("http://iot.abbindustrigymnasium.se:3001/grupp7/404",{
+					method: "PATCH",
+					headers: {
+						"Accept": "application/json",
+						"Content-Type": "application/json",
+					},
+					body:JSON.stringify({
+						ljus: Ljus,
+						temp: Temp
+					})
+				}).then((response) => response.json()).then(responseJSON2 => {
+					console.log(responseJSON2);
+					alert(response.message+ " "+ Ljus);
+				}).catch((error) => {
+					console.log(error);
+				});
+
+		}
+
 	  change(Ljus) {
 		this.setState(() => {
 		  return {
@@ -51,8 +77,18 @@ export default class Component2 extends React.Component {
 		});
 	  }
 	
+	  change2(Temp) {
+			this.setState(() => {
+				return {
+				Temp: parseFloat(Temp),
+				};
+			});
+			}
+		
+
 	  render() {
 		const {Ljus} = this.state;
+		const {Temp} = this.state;
 		return (
 		  <View style={styles.container}>
 			<Text style={styles.text}>{this.state.Ljus}</Text>
@@ -60,10 +96,20 @@ export default class Component2 extends React.Component {
 			<Slider style={styles.containernew}
 			  step={1}
 			  maximumValue={100}
-			  onValueChange={this.change.bind(this)}
+				onValueChange={this.change.bind(this)}
+				onSlidingComplete={ this.insertToServer}
 			  value={Ljus}
 			/>
-
+			<Text style={styles.text2}>{this.state.Temp}</Text>
+			<View> 
+			<Slider style={styles.containernew2}
+			  step={1}
+			  maximumValue={100}
+				onValueChange={this.change2.bind(this)}
+				onSlidingComplete={ this.insertToServer}
+			  value={Temp}
+			/>
+			</View>
 			</View>
 		  </View>
 		);
@@ -78,13 +124,28 @@ export default class Component2 extends React.Component {
 		justifyContent: 'center',
 		},
 		containernew: {
-			padding: 25,
+			paddingRight: 25,
+			paddingLeft: 25,
 			paddingTop: 5,
+			paddingBottom: 10,
 			flex: 1,
-			height: 25,
+			height: 20,
 			justifyContent: 'center',
 			},
 	  text: {
+		fontSize: 50,
+		textAlign: 'center',
+		},
+		containernew2: {
+			paddingRight: 25,
+			paddingLeft: 25,
+			paddingTop: 5,
+			paddingBottom: 10,
+			flex: 1,
+			height: 20,
+			justifyContent: 'center',
+			},
+	  text2: {
 		fontSize: 50,
 		textAlign: 'center',
 	  },

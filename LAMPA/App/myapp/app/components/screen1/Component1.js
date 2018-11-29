@@ -2,7 +2,6 @@ import React from 'react';
 import { 
 	StyleSheet,
 	View,
-	Text,
 	ImageBackground,
 } from 'react-native';
 
@@ -62,7 +61,7 @@ const styles = StyleSheet.create({
 	    paddingLeft: 7.5,
 	    paddingRight: 7.5,
 		paddingTop: 20,
-		paddingBottom: 7.5,
+		paddingBottom: 5,
 		backgroundColor: "#000000",
 	},
 	

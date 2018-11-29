@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
 	    marginTop: 5,
 	    paddingLeft: 7.5,
 	    paddingRight: 7.5,
-	    paddingTop: 7.5,
-	    paddingBottom: 7.5,
+	    paddingTop: 15,
+	    paddingBottom: 0,
 	},
 	
 	layouts: {
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
 	    justifyContent: 'center',
 	    overflow: 'hidden',
 		padding: 10,
-		top: 30,
+		top: 10,
 	},
 	
 	item1Text: {
