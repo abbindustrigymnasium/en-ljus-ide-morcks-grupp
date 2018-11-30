@@ -5,12 +5,7 @@ import {
 } from 'react-native';
 
 import Component1 from './Component1';
-import Component4 from './Component4';
 import Component2 from './Component2';
-import Component6 from './Component6';
-import Component5 from './Component5';
-import Component3 from './Component3';
-import Component7 from './Component7';
 import Image from './Image';
 
 export default class Screen1 extends React.Component {
@@ -21,12 +16,7 @@ export default class Screen1 extends React.Component {
 
         this.state = {
             Component1Visible: true,
-            Component4Visible: true,
             Component2Visible: true,
-            Component6Visible: true,
-            Component5Visible: true,
-            Component3Visible: true,
-            Component7Visible: true,
             ImageVisible: true,
 
         }

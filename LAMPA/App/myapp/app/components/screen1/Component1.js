@@ -24,7 +24,6 @@ export default class Component1 extends React.Component {
 
                 <View style={styles.layouts}>
 
-                	<View style={styles.layout1}>
 
                 		<View style={styles.itemcontainer1}>
 
@@ -38,8 +37,6 @@ export default class Component1 extends React.Component {
 									</ImageBackground>
 
                 			</View>
-
-                		</View>
 
                 	</View>
                 	
@@ -58,11 +55,12 @@ const styles = StyleSheet.create({
 	component: {
 	    width: '100%',
 		flexDirection: 'row',
-	    paddingLeft: 7.5,
-	    paddingRight: 7.5,
-		paddingTop: 20,
-		paddingBottom: 5,
+		paddingTop: 30,
+		paddingBottom: 10,
+		paddingLeft: 10,
+		paddingRight: 10,
 		backgroundColor: "#000000",
+		height: 112,
 	},
 	
 	layouts: {
@@ -70,10 +68,6 @@ const styles = StyleSheet.create({
 	    flexWrap: 'wrap',
 	},
 	
-	layout1: {
-	    width: '100%',
-	    height: 89.5,
-	},
 	
 	itemcontainer1: {
 	    width: '100%',
@@ -86,8 +80,6 @@ const styles = StyleSheet.create({
 	    position: 'relative',
 	    alignItems: 'center',
 		justifyContent: 'center',
-		paddingTop: 11,
-		paddingBottom : 5,
 	},
 	
 	item1: {

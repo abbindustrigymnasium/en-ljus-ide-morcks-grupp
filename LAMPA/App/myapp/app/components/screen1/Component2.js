@@ -96,7 +96,7 @@ export default class Component2 extends React.Component {
 			>
 			Ljusstyrka
 			</Text>
-			<Text style={styles.text}>{this.state.Ljus}</Text>
+			<Text style={styles.text}>{this.state.Ljus}%</Text>
 			<View> 
 			<Slider style={styles.containernew}
 			  step={1}
@@ -105,15 +105,15 @@ export default class Component2 extends React.Component {
 				onSlidingComplete={ this.insertToServer}
 			  value={Ljus}
 			/>
-			<Text style={styles.item6Text}>
+			<View style={styles.item6Text}>
 			<Text style={styles.item5Text} >Min </Text><Text style={styles.item4Text}> Max </Text>
-			</Text>
+			</View>
 			<Text 
 			style={styles.item3Text}
 			>
 			Färgtemperatur
 			</Text>
-			<Text style={styles.text2}>{this.state.Temp}</Text>
+			<Text style={styles.text2}>{this.state.Temp}%</Text>
 			<View> 
 			<Slider style={styles.containernew2}
 			  step={1}
@@ -123,9 +123,9 @@ export default class Component2 extends React.Component {
 			  value={Temp}
 			/>
 
-			<Text style={styles.item6Text}>
+			<View style={styles.item6Text}>
 			<Text style={styles.item5Text} >Kallt </Text><Text style={styles.item4Text}> Varmt </Text>
-			</Text>
+			</View>
 			</View>
 			</View>
 		  </View>
@@ -169,30 +169,34 @@ export default class Component2 extends React.Component {
 		},
 		item2Text: {
 	    color: '#181818',
-	    fontSize: 15,
+	    fontSize: 16,
 	    textAlign: 'center',
 	    width: '100%',
 	},
 	item3Text: {
 		color: '#181818',
-		fontSize: 15,
+		fontSize: 16,
 		textAlign: 'center',
 		width: '100%',
 		paddingTop: 75,
 },
 item4Text: {
 	color: '#181818',
-	fontSize: 15,
+	fontSize: 13 ,
 	textAlign: 'right',
 	width: '100%',
+	flex: 1,
 },
 item5Text: {
 	color: '#181818',
-	fontSize: 15,
+	fontSize: 13,
 	textAlign: 'left',
 	width: '100%',
+	flex: 1,
 },
 item6Text: {
-	textAlign: 'center',
+	flexDirection: 'row',
+	paddingRight: 5,
+	paddingLeft: 5,
 },
 	});
