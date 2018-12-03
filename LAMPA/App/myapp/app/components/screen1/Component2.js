@@ -62,7 +62,7 @@ export default class Component2 extends React.Component {
 					})
 				}).then((response) => response.json()).then(responseJSON2 => {
 					console.log(responseJSON2);
-					alert(response.message+ " "+ Ljus);
+					alert(responseJSON2.message+ " "+ Ljus);
 				}).catch((error) => {
 					console.log(error);
 				});
