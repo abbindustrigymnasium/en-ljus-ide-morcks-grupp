@@ -25,11 +25,11 @@ bool Light = false;
  String id="404"; //Lampans namn
  int temp=0; //Temperaturen
  int styrka= 0; //Styrkan
- bool LampExist=false; //Finns lampan redan eller Ã¤r den ny?
- bool GottenValues = false; //Har vi hÃ¤mtat nÃ¥gra vÃ¤rden redan frÃ¥n databasen?
+ bool LampExist=false; //Finns lampan sen tidigare eller är den ny?
+ bool GottenValues = false; //Har vi hämtat några värden från databasen redan?
 
 String GetfromDB(String host){
-String url= "/grupp7/"+id; //Urlen jag anvÃ¤nder fÃ¶r att posta mina vÃ¤rden
+String url= "/grupp7/"+id; //Urlen jag använder för att hämta mina värden
   // Detta skickar vÃ¤rdena till servern.
    String Output ="GET "+ url + " HTTP/1.1\r\n" + //SÃ¤ger att det Ã¤r typen post, kan vara patch, get,delete beroende pÃ¥ vad man vill gÃ¶ra., samt urlen vi ska till.
                  "Host: " + host+ "\r\n" + //BerÃ¤ttar vilken host det Ã¤r vi ansluter till
@@ -41,28 +41,28 @@ String SendtoDB(String host){
   String type ="POST ";
   if(GottenValues==true)
   {
-  String url= "/grupp7/404"; //Urlen jag anvÃ¤nder fÃ¶r att posta mina vÃ¤rden
+  String url= "/grupp7/404"; //Urlen jag använder för att posta mina värden
    
-  StaticJsonBuffer<300> jsonBuffer; //Skapar en buffer, det vill sÃ¤ga sÃ¥ mycket minne som vÃ¥rt blivande jsonobjekt fÃ¥r anvÃ¤nda.
+  StaticJsonBuffer<300> jsonBuffer; //Skapar en buffer, det vill säga så mycket minne som vårt blivande jsonobjekt får använda.
   JsonObject& root = jsonBuffer.createObject(); //Skapar ett jsonobjekt som vi kallar root
-  root["id"] = id; //Skapar parameterna name och ger den vÃ¤rdet Vykort
+  root["id"] = id; //Skapar parameterna name och ger den värdet Vykort
   root["temp"] = temp;
   root["ljus"] = styrka;// Samma som ovan
   String buffer;  //Skapar en string som vi kallar buffer
-  root.printTo(buffer); //LÃ¤gger Ã¶ver och konverterar vÃ¥rt jsonobjekt till en string och sparar det i buffer variabeln.
+  root.printTo(buffer); //Lägger över och konverterar vårt jsonobjekt till en string och sparar det i buffer variabeln.
   if(LampExist==true)
   {
   type ="PATCH ";
-      Serial.println("Uppdaterar vÃ¤rdet!");
+      Serial.println("Uppdaterar värdet!");
   }
-//hÃ¤r nÃ¥gonstans ska jag anvÃ¤dna POST eller PATCH beroende pÃ¥ om vÃ¤rdet finns!!!!
-  // Detta skickar vÃ¤rdena till servern.
-   String Output =type+url + " HTTP/1.1\r\n" + //SÃ¤ger att det Ã¤r typen post, kan vara patch, get,delete beroende pÃ¥ vad man vill gÃ¶ra., samt urlen vi ska till.
+//här någonstans ska jag anvädna POST eller PATCH beroende på om värdet finns!!!!
+  // Detta skickar värdena till servern.
+   String Output =type+url + " HTTP/1.1\r\n" + //Säger att det är typen post, kan vara patch, get,delete beroende på vad man vill göra., samt urlen vi ska till.
                  "Host: " + host+ "\r\n" + //BerÃ¤ttar vilken host det Ã¤r vi ansluter till
-                 "Content-Type: application/json\r\n" + //SÃ¤ger att det Ã¤r Json format vi skickar (dock konverterat till en string fÃ¶r att kunna skickas.
-                 "Content-Length: " + buffer.length() + "\r\n" + //BerÃ¤ttar hur stort packet vi ska skicka.
-                 "\r\n" + // Detta Ã¤r en extra radbrytning fÃ¶r att berÃ¤tta att det Ã¤r hÃ¤r bodyn startar.
-                 buffer + "\n"; //skickar vÃ¥r buffer som  body
+                 "Content-Type: application/json\r\n" + //Säger att det är Json format vi skickar (dock konverterat till en string för att kunna skickas.
+                 "Content-Length: " + buffer.length() + "\r\n" + //Berättar hur stort packet vi ska skicka.
+                 "\r\n" + // Detta är en extra radbrytning för att berätta att det är här bodyn startar.
+                 buffer + "\n"; //skickar vår buffer som  body
  
  return Output;
   }
@@ -76,15 +76,15 @@ void ConnecttoDB(String input){
   const char* host = "iot.abbindustrigymnasium.se";//Adressen vi ska ansluta till. 7Laddaremygglustbil "http://iot.abbindustrigymnasium.se"
     
      Serial.print("connecting to ");
- Serial.println(host); //Skriver ut i terminalen fÃ¶r att veta vart vi ska skicka vÃ¤rdena.
+ Serial.println(host); //Skriver ut i terminalen får att veta vart vi ska skicka värdena.
   
   // Use WiFiClient class to create TCP connections
   WiFiClient client;
-  if (!client.connect(host, httpPort)) { //FÃ¶rsÃ¶ker ansluta
+  if (!client.connect(host, httpPort)) { //Försöker ansluta
     Serial.println("connection failed");
     return;
   }
-  else  //Om vi kan ansluta sÃ¥ ska wohoo skrivas
+  else  //Om vi kan ansluta så ska wohoo skrivas
   {
     Serial.print("Wohoo");
     }
@@ -103,21 +103,21 @@ client.print(SendtoDB(host));
   }
 
 String json = ""; //De delarna vi vill ha ut av meddelandet sparar vi i stringen json
-boolean httpBody = false; //bool fÃ¶r att sÃ¤a att vi har kommit ner till bodydelen
+boolean httpBody = false; //bool får att säga att vi har kommit ner till bodydelen
 // tittar om vi har anslutit till clienten
 while (client.available()) {
-  String line = client.readStringUntil('\r'); //LÃ¤ser varje rad tills det Ã¤r slut pÃ¥ rader
-  if (!httpBody && line.charAt(1) == '{') { //Om vi hittar { sÃ¥ vet vi att vi har nÃ¥tt bodyn
-    httpBody = true; //boolen blir true fÃ¶r att vi ska veta fÃ¶r nÃ¤sta rad att vi redan Ã¤r i bodyn
+  String line = client.readStringUntil('\r'); //Läser varje rad tills det Ã¤r slut på rader
+  if (!httpBody && line.charAt(1) == '{') { //Om vi hittar { så vet vi att vi har nått bodyn
+    httpBody = true; //boolen blir true får att vi ska veta för nästa rad att vi redan är i bodyn
   }
-  if (httpBody) { //Om bodyn Ã¤r sann lÃ¤gg till raden i json variabeln
+  if (httpBody) { //Om bodyn är sann lägg till raden i json variabeln
     json += line;
   }
 }
 //Skriver ut bodyns data
     Serial.println("Got data:");
     Serial.println(json);
-  if(input =="GET") //Om det Ã¤r Get sÃ¥ kÃ¶r vi metoden UpdateValues
+  if(input =="GET") //Om det är Get så kör vi metoden UpdateValues
     UpdateValues(json);
 
   Serial.println();
@@ -125,55 +125,58 @@ while (client.available()) {
 }
 
 void UpdateValues(String json){
-      //Vi skapar ett Jsonobjekt dÃ¤r vi klistrar in vÃ¤rdena frÃ¥n bodyn
+      //Vi skapar ett Jsonobjekt där vi klistrar in värdena från bodyn
       StaticJsonBuffer<400> jsonBuffer;
     JsonObject& root = jsonBuffer.parseObject(json);
-    //Vi skapar sedan lokala strings dÃ¤r vi lÃ¤gger Ã¶ver vÃ¤rdena en i taget
-    String dataN = root["id"];
+    //Vi skapar sedan lokala strings där vi lägger över värdena en i taget
+    String dataN = root["id"];//vi lägger in de hämtade värdena i i lokala string
    if(dataN!="none")
          {
-    int dataT = root["temp"];
+    int dataT = root["temp"];//vi lägger in de hämtade vägdena en i taget i lokala integers
     int dataL = root["ljus"];
-    //Därefter skriver vi över de lokala värdena till våra globala värden för lampan
-     id = dataN; 
+     id = dataN; // vi skriver därefter över de lokala värdena till de globala värdena
      temp =dataT;
      styrka = dataL;
 
-       LampExist=true;
-     Serial.print(styrka);
+       LampExist=true;//vi säger att en lampa existerar
+     Serial.print(styrka);//vi skriver ut styrkan
          }
          else
          {
           String Mess =root["message"];
          Serial.print(Mess);
          }
-  GottenValues = true;
+  GottenValues = true;//vi säger att vi har fått in vrden det vill säga att boolean gottenvalues är sann
 }
 
 
 
 
 void loop() {
-   ConnecttoDB("GET");
-   UpdateValues;
- bool Light = digitalRead(DI_Light);
- bool Dark = digitalRead(DI_Dark);
- Serial.println(digitalRead(DI_Light));
- Serial.println(digitalRead(DI_Dark));
+ bool Light = digitalRead(DI_Light);//vi läser av digitala input för knappen light och ändrar boolean Light efter värdet vi får in
+ bool Dark = digitalRead(DI_Dark);//vi läser av digitala input för knappen dark och ändrar boolean Dark efter värdet vi får in
+ Serial.println(digitalRead(DI_Light));//vi skriver ut värdet vi får in för digital input light
+ Serial.println(digitalRead(DI_Dark));//vi skriver ut värdet vi får in för digital input dark
  
- if(Light == true){
-  styrka = styrka + 10;
+ if(Light == true){//om knappen Light är intryckt sker följande kod
+   ConnecttoDB("GET");//vi kör koden connectodb för värdet get
+   UpdateValues;//vi kör koden för updatevalues
+   styrka = styrka + 10;//vi sätter variabeln styrka till sig själv adderat med tio
+   ConnecttoDB("POST"); //vi kör koden connecttodb för värdet post
  }
-  else if (Dark == true){
-    styrka = styrka - 10;
+  else if (Dark == true){//om knappen Dark är intryckt sker följande kod
+   ConnecttoDB("GET");//vi kör koden connectodb för värdet get
+   UpdateValues;//vi kör koden för updatevalues
+   styrka = styrka - 10;//vi sätter variabeln styrka till sig själv subtraherat med tio
+   ConnecttoDB("POST");//vi kör koden connecttodb för värdet post
+   
   }
-    else {
-      styrka = styrka;
+    else {//om ingen av de ovanstående if statmentsen är sanna körs denna kod
+      styrka = styrka;//variabeln styrka ändras inte
     }
   
  
- Serial.println(styrka);
- ConnecttoDB("POST");
+ Serial.println(styrka);//vi skriver ut värdet för variablen styrka
 }
    
 
