@@ -161,13 +161,24 @@ void loop() {
  if(Light == true){//om knappen Light är intryckt sker följande kod
    ConnecttoDB("GET");//vi kör koden connectodb för värdet get
    UpdateValues;//vi kör koden för updatevalues
-   styrka = styrka + 10;//vi sätter variabeln styrka till sig själv adderat med tio
-   ConnecttoDB("POST"); //vi kör koden connecttodb för värdet post
  }
-  else if (Dark == true){//om knappen Dark är intryckt sker följande kod
+ else if (Dark == true) {
    ConnecttoDB("GET");//vi kör koden connectodb för värdet get
    UpdateValues;//vi kör koden för updatevalues
+ }
+   else {//om ingen av de ovanstående if statmentsen är sanna körs denna kod
+      styrka = styrka;//variabeln styrka ändras inte
+    }
+   if (Dark == true){//om knappen Dark är intryckt sker följande kod
    styrka = styrka - 10;//vi sätter variabeln styrka till sig själv subtraherat med tio
+   ConnecttoDB("POST");//vi kör koden connecttodb för värdet post
+ }
+  else if (styrka > 90){
+   styrka = 100;//vi sätter variabeln styrka till sig själv adderat med tio
+   ConnecttoDB("POST"); //vi kör koden connecttodb för värdet post
+  }
+   else if (Light == true){//om knappen Dark är intryckt sker följande kod
+   styrka = styrka + 10;//vi sätter variabeln styrka till sig själv subtraherat med tio
    ConnecttoDB("POST");//vi kör koden connecttodb för värdet post
    
   }
