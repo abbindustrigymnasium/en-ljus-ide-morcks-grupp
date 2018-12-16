@@ -1,12 +1,12 @@
 #include <ESP8266WiFi.h>     
-//BÃ¥de ArduinoJson och Wifimanager måste installeras som bibliotek, de finns med i bibliotekskatalogen, ArduinoJSon versionen som ska användas 5.13 och inte senaste.     
-#include <ArduinoJson.h> // V 5.13 
+//Både ArduinoJson och Wifimanager måste installeras som bibliotek, de finns med i bibliotekskatalogen, ArduinoJSon versionen som ska användas 5.13 och inte senaste verisionen.     
+#include <ArduinoJson.h> // Verision 5.13
 //behövs för bibliotek
 #include <DNSServer.h>
 #include <ESP8266WebServer.h>
 #include <WiFiManager.h>         //https://github.com/tzapu/WiFiManager
-#define DI_Dark 13 // D7
-#define DI_Light 15 // D8
+#define DI_Dark 13 // Säger att Digitala input Dark har in/utgången 13 på NodeMCU kortet
+#define DI_Light 15 // Säger att Digitala input Dark har in/utgången 15 på NodeMCU kortet
 
 void setup() {
       pinMode(DI_Dark, INPUT); //Tillkännager DI_Dark som input
@@ -19,33 +19,33 @@ void setup() {
     Serial.println("connected...yeey :)");// Skrivs ut i serial monitor när NodeMCU blir uppkopplad till wifi
 
 }
-bool Dark = false;//tillkännager 
-bool Light = false;
+bool Dark = false;//tillkännager boolean Dark som falsk
+bool Light = false;//tillkännager boolean Light som falsk
  
  String id="404"; //Lampans namn
- int temp=0; //Temperaturen
- int styrka= 0; //Styrkan
- bool LampExist=false; //Finns lampan sen tidigare eller är den ny?
- bool GottenValues = false; //Har vi hämtat några värden från databasen redan?
+ int temp=0; //Färgtemperaturen på ljuset
+ int styrka= 0; //Styrkan på ljuset
+ bool LampExist=false; //Finns lampan eller är den ny
+ bool GottenValues = false; //Har vi hämtat värden från databasen eller inte
 
 String GetfromDB(String host){
 String url= "/grupp7/"+id; //Urlen jag använder för att hämta mina värden
-  // Detta skickar vÃ¤rdena till servern.
-   String Output ="GET "+ url + " HTTP/1.1\r\n" + //SÃ¤ger att det Ã¤r typen post, kan vara patch, get,delete beroende pÃ¥ vad man vill gÃ¶ra., samt urlen vi ska till.
-                 "Host: " + host+ "\r\n" + //BerÃ¤ttar vilken host det Ã¤r vi ansluter till
-                 "\r\nConnection: close\r\n\r\n"; //skickar vÃ¥r buffer som  body
+  // Detta skickar värdena till servern.
+   String Output ="GET "+ url + " HTTP/1.1\r\n" + //Säger att det är typen post, kan vara patch, get,delete beroende på vad man vill göra., samt urlen vi ska till.
+                 "Host: " + host+ "\r\n" + //Berättar vilken host det är vi ansluter till
+                 "\r\nConnection: close\r\n\r\n"; //skickar vår buffer som  body
  return Output;
 }
 
 String SendtoDB(String host){
   String type ="POST ";
-  if(GottenValues==true)
+  if(GottenValues==true)//följande kod sker om vi har fått in värden tidigare(get)
   {
-  String url= "/grupp7/404"; //Urlen jag använder för att posta mina värden
+  String url= "/grupp7/404"; //Urlen som används för att posta värden
    
   StaticJsonBuffer<300> jsonBuffer; //Skapar en buffer, det vill säga så mycket minne som vårt blivande jsonobjekt får använda.
   JsonObject& root = jsonBuffer.createObject(); //Skapar ett jsonobjekt som vi kallar root
-  root["id"] = id; //Skapar parameterna name och ger den värdet Vykort
+  root["id"] = id; //Skapar parameterna id och ger den värdet id
   root["temp"] = temp;
   root["ljus"] = styrka;// Samma som ovan
   String buffer;  //Skapar en string som vi kallar buffer
@@ -58,7 +58,7 @@ String SendtoDB(String host){
 //här någonstans ska jag anvädna POST eller PATCH beroende på om värdet finns!!!!
   // Detta skickar värdena till servern.
    String Output =type+url + " HTTP/1.1\r\n" + //Säger att det är typen post, kan vara patch, get,delete beroende på vad man vill göra., samt urlen vi ska till.
-                 "Host: " + host+ "\r\n" + //BerÃ¤ttar vilken host det Ã¤r vi ansluter till
+                 "Host: " + host+ "\r\n" + //Berättar vilken host det är vi ansluter till
                  "Content-Type: application/json\r\n" + //Säger att det är Json format vi skickar (dock konverterat till en string för att kunna skickas.
                  "Content-Length: " + buffer.length() + "\r\n" + //Berättar hur stort packet vi ska skicka.
                  "\r\n" + // Detta är en extra radbrytning för att berätta att det är här bodyn startar.
@@ -73,20 +73,20 @@ String SendtoDB(String host){
 void ConnecttoDB(String input){
 
    const int httpPort = 3000; //porten vi ska till
-  const char* host = "iot.abbindustrigymnasium.se";//Adressen vi ska ansluta till. 7Laddaremygglustbil "http://iot.abbindustrigymnasium.se"
+  const char* host = "iot.abbindustrigymnasium.se";//Adressen vi ska ansluta till "http://iot.abbindustrigymnasium.se"
     
      Serial.print("connecting to ");
- Serial.println(host); //Skriver ut i terminalen får att veta vart vi ska skicka värdena.
+ Serial.println(host); //Skriver ut i terminalen hosten i terminalen för att vi ska veta vart värderna skickas
   
   // Use WiFiClient class to create TCP connections
   WiFiClient client;
-  if (!client.connect(host, httpPort)) { //Försöker ansluta
-    Serial.println("connection failed");
+  if (!client.connect(host, httpPort)) { //Försöker ansluta till hosten och porten
+    Serial.println("connection failed");//den lyckades inte ansluta
     return;
   }
   else  //Om vi kan ansluta så ska wohoo skrivas
   {
-    Serial.print("Wohoo");
+    Serial.print("Wohoo");//den lyckades ansluta
     }
 if(input =="GET")
 client.print(GetfromDB(host));
@@ -96,7 +96,7 @@ client.print(SendtoDB(host));
   unsigned long timeout = millis();
   while (client.available() == 0) {
     if (millis() - timeout > 10000) {
-      Serial.println(">>> Client Timeout !");
+      Serial.println(">>> Client Timeout !");//det tog för lång tid
       client.stop();
       return;
     }
@@ -108,7 +108,7 @@ boolean httpBody = false; //bool får att säga att vi har kommit ner till bodyd
 while (client.available()) {
   String line = client.readStringUntil('\r'); //Läser varje rad tills det Ã¤r slut på rader
   if (!httpBody && line.charAt(1) == '{') { //Om vi hittar { så vet vi att vi har nått bodyn
-    httpBody = true; //boolen blir true får att vi ska veta för nästa rad att vi redan är i bodyn
+    httpBody = true; //boolen blir sann för att nästa rad ska veta att vi redan är i bodyn
   }
   if (httpBody) { //Om bodyn är sann lägg till raden i json variabeln
     json += line;
