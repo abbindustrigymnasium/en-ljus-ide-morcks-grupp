@@ -93,7 +93,7 @@ export default class Component2 extends React.Component {
 		  <View style={styles.container}>
       <View style={styles.images}>
       <Image 
-      	source={require('../ABB_Industrigymnasium.png')} //Abb-loggan
+      	source={require('../ABB_Industrigymnasium.png')} //Abb-logotypen
       	style={styles.item1}
       >
 
