@@ -13,7 +13,7 @@ export default class Component2 extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
+		this.state = { //skapar de lokala variablerna för ljusstyrka och färgtemp och ger dem värdet 50
 			Ljus: 50,
 			Temp: 50
 		}
@@ -21,9 +21,9 @@ export default class Component2 extends React.Component {
 		
 		componentDidMount(){
 			let self = this;
-			fetch("http://iot.abbindustrigymnasium.se:3000/grupp7/404",{
+			fetch("http://iot.abbindustrigymnasium.se:3000/grupp7/404",{ //ansluter till backenden
 				
-			method: "GET"
+			method: "GET" //säger att metoden vi ska använda till databasen är GET
 			
 		}).then((response) => response.json()).then((responseJSON) =>
 		{
@@ -31,11 +31,11 @@ export default class Component2 extends React.Component {
 
 			var resultat = responseJSON;
 			console.log(resultat);
-			if (message = "Light7"){
-				if(responseJSON.length != 0 ){
+			if (message = "Light7"){ //om backenden skickar meddelandet "Light7" så ska följande kod
+				if(responseJSON.length != 0 ){ //om svaret inte är tomt så ska följande kod köras
 					self.setState({
-						Ljus: resultat.ljus,
-						Temp: resultat.temp
+						Ljus: resultat.ljus, //säger att variabeln Ljus ska bli resultet av variabeln ljus från databasen
+						Temp: resultat.temp //säger att variabeln Temp ska bli resultet av variabeln temp från databasen
 					})
 				}
 				else
@@ -48,29 +48,28 @@ export default class Component2 extends React.Component {
 		}
 
 		insertToServer =() =>{
-			const {Ljus} = this.state;
+			const {Ljus} = this.state; 
 			const {Temp} = this.state;
 
-				fetch("http://iot.abbindustrigymnasium.se:3000/grupp7/404",{
-					method: "PATCH",
+				fetch("http://iot.abbindustrigymnasium.se:3000/grupp7/404",{ //ansluter till backenden
+					method: "PATCH", //säger att metoden vi ska använda är PACTH
 					headers: {
 						"Accept": "application/json",
 						"Content-Type": "application/json",
 					},
 					body:JSON.stringify({
-						ljus: Ljus,
+						ljus: Ljus, // gör variablerna Ljus och Temp till ett JSON-objekt
 						temp: Temp
 					})
 				}).then((response) => response.json()).then(responseJSON2 => {
 					console.log(responseJSON2);
-					//alert(responseJSON2.message+ " "+ Ljus +" "+ Temp);
 				}).catch((error) => {
 					console.log(error);
 				});
 
 		}
 
-	  change(Ljus) {
+	  change(Ljus) { //funktionen som ändrar värdet som tas från ljus-sliden till variabeln Ljus 
 		this.setState(() => {
 		  return {
 			Ljus: parseFloat(Ljus),
@@ -78,7 +77,7 @@ export default class Component2 extends React.Component {
 		});
 	  }
 	
-	  change2(Temp) {
+	  change2(Temp) { //funktionen som ändrar värdet som tas från temp-sliden till variabeln Temp 
 			this.setState(() => {
 				return {
 				Temp: parseFloat(Temp),
@@ -94,13 +93,13 @@ export default class Component2 extends React.Component {
 		  <View style={styles.container}>
       <View style={styles.images}>
       <Image 
-      	source={require('../ABB_Industrigymnasium.png')} 
+      	source={require('../ABB_Industrigymnasium.png')} //Abb-loggan
       	style={styles.item1}
       >
 
       </Image>
       <Image 
-				source={require('../light-bulb.png')} 
+				source={require('../light-bulb.png')} //En bild på en glödlampa
 				style={styles.item2}
 			>
 				
@@ -113,11 +112,11 @@ export default class Component2 extends React.Component {
 			</Text>
 			<Text style={styles.text}>{this.state.Ljus}%</Text>
 			<View> 
-			<Slider style={styles.containernew}
+			<Slider style={styles.containernew} //slidern för ljusstyrka
 			  step={1}
 			  maximumValue={100}
 				onValueChange={this.change.bind(this)}
-				onSlidingComplete={ this.insertToServer}
+				onSlidingComplete={ this.insertToServer} //när slidern släpps så körs funktionen som skickar det nya värdet till databasen
 			  value={Ljus}
 			/>
 			<View style={styles.item6Text}>
@@ -130,11 +129,11 @@ export default class Component2 extends React.Component {
 			</Text>
 			<Text style={styles.text2}>{this.state.Temp}%</Text>
 			<View> 
-			<Slider style={styles.containernew2}
+			<Slider style={styles.containernew2} //slidern för Färgtemperatur
 			  step={1}
 			  maximumValue={100}
 				onValueChange={this.change2.bind(this)}
-				onSlidingComplete={ this.insertToServer}
+				onSlidingComplete={ this.insertToServer} //när slidern släpps så körs funktionen som skickar det nya värdet till databasen
 			  value={Temp}
 			/>
 
