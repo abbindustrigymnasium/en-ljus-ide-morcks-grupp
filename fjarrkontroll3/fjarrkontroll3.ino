@@ -170,20 +170,20 @@ void loop() {
       styrka = styrka;//variabeln styrka ändras inte
     }
   
-   if (Dark == true and styrka < 10){//om knappen Dark är intryckt sker följande kod
+   if (Dark == true and styrka < 20){//om knappen Dark är intryckt sker följande kod
    styrka = 0;//vi sätter variabeln styrka till sig själv subtraherat med tio
    ConnecttoDB("POST");//vi kör koden connecttodb för värdet post
  }
   else if (Dark == true){//om knappen Dark är intryckt sker följande kod
-   styrka = styrka - 10;//vi sätter variabeln styrka till sig själv subtraherat med tio
+   styrka = styrka - 20;//vi sätter variabeln styrka till sig själv subtraherat med tio
    ConnecttoDB("POST");//vi kör koden connecttodb för värdet post
   }
-  else if (Light == true and styrka > 90){
+  else if (Light == true and styrka > 80){
    styrka = 100;//vi sätter variabeln styrka till sig själv adderat med tio
    ConnecttoDB("POST"); //vi kör koden connecttodb för värdet post
   }
    else if (Light == true){//om knappen Dark är intryckt sker följande kod
-   styrka = styrka + 10;//vi sätter variabeln styrka till sig själv subtraherat med tio
+   styrka = styrka + 20;//vi sätter variabeln styrka till sig själv subtraherat med tio
    ConnecttoDB("POST");//vi kör koden connecttodb för värdet post
    
   }
