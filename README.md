@@ -9,7 +9,7 @@ För att starta backenden måste man ladda ner hela Backend mappen. Sedan måste
 För oss är den igång hela tiden på en separat server. 
 
 ## Frontend 
-* Homescreen.js 
+* Homescreen.js - hela appen är en och samma komponent
 
 Appen består huvudsakligen av två sliders som är till för att justera ljusstyrkan och färgtemperaturen. Appen är länkad till backenden och hämtar värdena från databasen vid uppstart och uppdaterar värderna när slidesen släpps.
 För att starta frontenden måste man först ladda ner hela Frontend-mappen och öppna den med **VSC** eller liknande. Därefter måste man installera **node modules** genom att skriva **npm i** i terminalen. Samma sak måste man även göra med **expo** genom att skriva **npm i -g expo-cli**. Till sist måste man skriva in **expo start** i terminalen och genom att skanna QR-koden från terminalen får man upp appen i **expo-appen**. 
