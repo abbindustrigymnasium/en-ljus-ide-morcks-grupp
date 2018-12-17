@@ -10,6 +10,7 @@ För att starta backenden måste man ladda ner hela Backend mappen. Sedan måste
 ## Frontend 
 *Homescreen.js 
 
+Appen består huvudsakligen av två sliders som är till för att justera ljusstyrkan och färgtemperaturen, värdena uppdateras när sliderna släpps.
 För att starta frontenden måste man först ladda ner hela Frontend mappen. Sedan måste man öppna filerna via **VSC** eller liknande program. Därefter måste man installera **node modules** genom att skriva **npm install** i terminalen. Samma sak måste man även göra med **expo** genom att skriva **npm install expo**. Sist måste man skriva in **npm start** i terminalen och genom att skanna QR-koden från terminalen får man upp appen i **expo-appen**. 
 Det går även att ladda ned APK-filen som ska funka på alla Android-telefoner.
 
