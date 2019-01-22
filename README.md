@@ -4,7 +4,7 @@ I det här projektet har vi skapat en lampa med justerbar ljusstyrka och färgte
 ## Backend
 * light7.js - Kopplar ihop databasen, arduinon och frontenden
 
-Backenden ligger i node-rest-shop och uppdaterar värderna en gång i sekunden och är en mellanhand mellan databasen och frontenden/arduino-korten.
+Backenden ligger i **node-rest-shop** och uppdaterar värderna en gång i sekunden och är en mellanhand mellan databasen och frontenden/arduino-korten.
 För att starta backenden måste man ladda ner hela Backend mappen. Sedan måste man öppna filerna via **VSC** eller liknande program. Därefter måste man installera **node modules** genom att skriva **npm install** i terminalen. Sist måste man skriva in **npm start** i terminalen för att starta backenden.
 För oss är den igång hela tiden på en separat server. 
 
